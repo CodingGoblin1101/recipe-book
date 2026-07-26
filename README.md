@@ -36,25 +36,6 @@ app/src/main/java/com/example/recipe_book
 
 ---
 
-## Wichtige Entscheidungen (Security & Auth)
-
-> **Wähle eine Strategie** — zwei übliche Ansätze:
-
-1. **Service-Account + Backend (empfohlen für Sicherheit)**
-
-    * Backend-Service (z. B. Firebase Cloud Functions, Ktor/Node) hält Service-Account-Credentials sicher.
-    * App ruft dein Backend auf; Backend spricht mit Google Sheets API.
-    * Vorteil: keine sensiblen Keys in der App, einfachere Autorisierung/Logging.
-
-2. **Direkter Zugriff vom Client (OAuth2 / Google Sign-In)**
-
-    * App verwendet Google Sign-In / OAuth2, der Nutzer autorisiert Zugriff auf sein Google Drive / Sheets.
-    * Vorteil: App kann direkt mit Sheets des Benutzers arbeiten.
-    * Nachteil: aufwändigere OAuth-Implementierung, Token-Handling, höhere Komplexität.
-
-
----
-
 ## Google Sheets - Setup (ToDos)
 
 * [ ] Script anpassen mit passenderen Datentypen
@@ -71,7 +52,13 @@ app/src/main/java/com/example/recipe_book
 * [ ] ViewModel -> addRecipe
 * [ ] ViewModel -> updateRecipes (even needed?)
 
+## Andere ToDos
 
+* nachlesen:
+    * [ ] ContentNegotiation
+    * [ ] howTo gradle
+*[ ] README überarbeiten
+* 
 ---
 
 
@@ -110,7 +97,3 @@ https://www.youtube.com/watch?v=0bZDPsaB7GY&list
       * install(ContentNegotiation) {
         json(Json {
         explicitNulls = false
-  
-* nachlesen:
-  * ContentNegotiation
-  * howTo gradle
