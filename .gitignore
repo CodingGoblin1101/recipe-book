@@ -1,3 +1,6 @@
+# other files
+*\HttpRoute.kt
+
 # Gradle files
 .gradle/
 build/
