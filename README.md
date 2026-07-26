@@ -2,41 +2,27 @@
 
 **Kurzbeschreibung**
 
-Mobile App (Android, Kotlin + Jetpack Compose) zum Erstellen, Auslesen und Bearbeiten von Rezepten, die in einem Google Sheet gespeichert werden. Architektur: **MVVM** (Packages: `view`, `viewmodel`, `domain` (Model), `repository`).
+Android App zum Erstellen, Auslesen und Bearbeiten von Rezepten, die in einem Google Sheet gespeichert werden.
 
----
-
-## Ziel
-
-Schritt-für-Schritt-Plan und ToDo-Liste, damit du die App sauber und reproduzierbar entwickelst. Die README enthält Vorschläge zur Authentifizierung, Sicherheit, Datenmodell, API-Zugriff, UI-Screens, Tests und CI.
-
----
-
-## Projektstruktur (empfohlen)
+## Projektstruktur 
 
 ```
-app/src/main/kotlin/com/yourcompany/recipes
-├─ view
-│  ├─ ui
-│  │  ├─ screens
-│  │  │  ├─ LoginScreen.kt
-│  │  │  ├─ RecipeListScreen.kt
-│  │  │  ├─ RecipeDetailScreen.kt
-│  │  │  └─ RecipeEditorScreen.kt
-│  │  └─ components
-│  └─ navigation
+app/src/main/java/com/example/recipe_book
+├
+│  ├─ data
+│  │  │  ├─ HttpRoute.kt
+│  │  │  ├─ ProductResponse.kt
+│  │  │  └─ ProductService.kt
+├─ ui
+│  ├─ screens
+│  │  ├─ MainScreen.kt
+│  │  └─ DetailScreen.kt
 ├─ viewmodel
 │  ├─ RecipeListViewModel.kt
 │  ├─ RecipeDetailViewModel.kt
-│  └─ AuthViewModel.kt
 ├─ domain
-│  ├─ model
-│  │  └─ Recipe.kt
-│  └─ usecase
-│     └─ (optional) use cases
-└─ repository
-   ├─ SheetsRepository.kt (interface)
-   └─ SheetsRepositoryImpl.kt (implementation)
+│  └─ RecipeData.kt
+
 ```
 
 ---
@@ -66,35 +52,28 @@ app/src/main/kotlin/com/yourcompany/recipes
     * Vorteil: App kann direkt mit Sheets des Benutzers arbeiten.
     * Nachteil: aufwändigere OAuth-Implementierung, Token-Handling, höhere Komplexität.
 
-**WICHTIG**: Niemals private Service-Account Schlüssel in einem veröffentlichten APK/Repo einchecken.
 
 ---
 
 ## Google Sheets - Setup (ToDos)
 
-* [x] Google Cloud Console Projekt erstellen
+* [ ] Script anpassen mit passenderen Datentypen
 
-    * [x] Sheets API aktivieren (Google Sheets API v4)
-    * [ ] Drive API aktivieren falls nötig (z. B. wenn du Sheets erstellen möchtest)
-
-* [ ] Authentifizierungsstrategie wählen (siehe oben)
-
-### Wenn du Backend + Service-Account verwendest
-
-* [ ] Service Account erstellen
-* [ ] JSON-Key herunterladen **(niemals in VCS!)**
-* [ ] Sheet erstellen, seine ID notieren und ggf. mit Service-Account teilen (falls möglich)
-* [ ] Backend-Endpoint(s) designen: `/recipes` (GET, POST, PUT, DELETE)
-* [ ] Backend implementieren: nimmt Requests entgegen, mapped JSON ↔ Sheet rows, ruft Google Sheets API auf
-
-### Wenn du OAuth/Google-Sign-In auf dem Client verwendest
-
-* [ ] OAuth-Client-ID (Android) in Google Cloud Console anlegen
-* [ ] `google-services.json` (falls Firebase / Play Services verwendet) richtig konfigurieren
-* [ ] Sheet-Layout definieren oder Benutzer Sheet erlauben
-* [ ] Implementiere Token-Refresh / Error-Handling
 
 ---
+
+## Repository API (Interface) — ToDo
+
+* [ ] genauen Aufbau der Architektur bestimmen + verbessern
+* [ ] Datentypen anpassen an Script
+* [ ] MainScreen verschönern
+* [ ] RecipeDetails Screen
+* [ ] ViewModel -> addRecipe
+* [ ] ViewModel -> updateRecipes (even needed?)
+
+
+---
+
 
 ## Google Sheets - empfohlenes Tabellenlayout
 
@@ -109,57 +88,29 @@ app/src/main/kotlin/com/yourcompany/recipes
 * `tags`: Kommagetrennt
 * `created_at` / `updated_at`: ISO 8601
 
-**Hinweis:** Verwende klar definierte Spalten, damit die Zuordnung zwischen Row und Domain-Model deterministisch ist.
-
 ---
 
-## Repository API (Interface) — ToDo
+## used Tutorials/Quellen
 
-```kotlin
-interface SheetsRepository {
-    suspend fun getAllRecipes(): List<Recipe>
-    suspend fun getRecipeById(id: String): Recipe?
-    suspend fun createRecipe(recipe: Recipe): String // returns new id
-    suspend fun updateRecipe(recipe: Recipe): Boolean
-    suspend fun deleteRecipe(id: String): Boolean
-    suspend fun syncIfNeeded(): Unit
-}
-```
+https://www.youtube.com/watch?v=0bZDPsaB7GY&list
 
-* [ ] Implementiere `SheetsRepositoryImpl` (HTTP client or Google API client)
-* [ ] Mapping: `List<String>` (Sheet row) ↔ `Recipe` (Domain)
-* [ ] Fehlerklassen definieren (z. B. `NetworkException`, `AuthException`, `SheetFormatException`)
 
 ---
+## Probleme/Hinweise + Learnings
 
-## Domain Model (Beispiel)
+* API + HTTP Anfrage + Response
+* HttpRoute enthält die URL zum Google App Script
+* funktioniert auch im Emulator
+* kurzes loading nötig, sonst crasht app
 
-```kotlin
-data class Recipe(
-    val id: String,
-    val title: String,
-    val description: String,
-    val ingredients: List<String>,
-    val steps: List<String>,
-    val tags: List<String> = emptyList(),
-    val createdAt: Instant,
-    val updatedAt: Instant
-)
-```
 
-ToDos:
-
-* [ ] Serializable/Parcelize markieren (kotlinx.serialization / Parcelable)
-* [ ] Converters für `List<String>` ↔ CSV/JSON
-
----
-
-## Netzwerk / Google API - Implementationsempfehlungen
-
-* **Option A — Google API Java Client**
-
-    * Kann direkt verwendet werden, aber führt viele transitive Abhängigkeiten ein.
-* **Option B — REST via Retrofit / Ktor / OkHttp** (empfohlen für Kontrolle)
-
-    * Verwende Retrofit + kotlinx.serialization (oder Moshi/Gson) um REST-Aufrufe auf die Sheets API zu machen.
-    * Endpoint: `[https://sheets.googleapis.com/v4/spreadsheets/{spreads](https://sheets.googleapis.com/v4/spreadsheets/{spreads)
+* probleme die aufgetreten sind:
+    * HTTP response body being consumed twice
+    * no NULL handling/ignorin - fix:               
+      * install(ContentNegotiation) {
+        json(Json {
+        explicitNulls = false
+  
+* nachlesen:
+  * ContentNegotiation
+  * howTo gradle
