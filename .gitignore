@@ -1,5 +1,5 @@
 # other files
-*\HttpRoute.kt
+*/HttpRoute.kt
 
 # Gradle files
 .gradle/

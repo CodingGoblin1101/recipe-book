@@ -2,37 +2,31 @@
 
 **Kurzbeschreibung**
 
-Android App zum Erstellen, Auslesen und Bearbeiten von Rezepten, die in einem Google Sheet gespeichert werden.
+Android App zum Erstellen, Auslesen und Bearbeiten von Rezepten, die in einem Sheet auf dem Google drive gespeichert werden.
 
 ## Projektstruktur 
 
 ```
-app/src/main/java/com/example/recipe_book
-├
-│  ├─ data
-│  │  │  ├─ HttpRoute.kt
-│  │  │  ├─ ProductResponse.kt
-│  │  │  └─ ProductService.kt
-├─ ui
-│  ├─ screens
-│  │  ├─ MainScreen.kt
-│  │  └─ DetailScreen.kt
-├─ viewmodel
-│  ├─ RecipeListViewModel.kt
-│  ├─ RecipeDetailViewModel.kt
-├─ domain
-│  └─ RecipeData.kt
-
+com.example.recipe_book
+├── data
+│   ├── model                  // Models and Services
+│   └── remote                 // Service/API definitions
+│
+├── ui── theme                 // Theme & styling
+│   ├─── screens               // All screens 
+│   ├─── components            // Reusable UI widgets 
+│   └─── MainActivity
+│
+└─── viewmodel                 // ViewModel
 ```
 
 ---
 
 ## High-Level-Architektur
 
-* **View (Jetpack Compose)**: Darstellung, Navigation, lokale Validierung.
-* **ViewModel**: State-Haltung, UI-Logik, Aufruf von Use-Cases/Repository, Coroutine-Scope.
-* **Repository**: Schnittstelle zur Datenquelle (Google Sheets). Beinhaltet Mapping zwischen Domain-Models und Google-Sheets-Formaten.
-* **Domain**: `Recipe`-Model und evtl. Use-Cases (Add, Update, Delete, List).
+* **Model/Data**: Services, API definitions
+* **View/UI (Jetpack Compose)**: Darstellung, Navigation, lokale Validierung.
+* **ViewModel**: State-Haltung, UI-Logik, Aufruf von Use-Cases/Repository
 
 ---
 
@@ -45,7 +39,7 @@ app/src/main/java/com/example/recipe_book
 
 ## Repository API (Interface) — ToDo
 
-* [ ] genauen Aufbau der Architektur bestimmen + verbessern
+* [x] genauen Aufbau der Architektur bestimmen + verbessern
 * [ ] Datentypen anpassen an Script
 * [ ] MainScreen verschönern
 * [ ] RecipeDetails Screen
@@ -57,21 +51,21 @@ app/src/main/java/com/example/recipe_book
 * nachlesen:
     * [ ] ContentNegotiation
     * [ ] howTo gradle
-*[ ] README überarbeiten
+*[x] README überarbeiten
 * 
 ---
 
 
 ## Google Sheets - empfohlenes Tabellenlayout
 
-**Sheet "recipes" (Tabellenblatt):**
+**Sheet "recipes":**
 
 | ID | title | description | ingredients | steps | tags | created_at | updated_at |
 | -- | ----- | ----------- | ----------- | ----- | ---- | ---------- | ---------- |
 
 * `ID`: eindeutige ID (UUID oder inkrementell)
-* `ingredients`: JSON-Array oder durch Pipe `|` getrennt
-* `steps`: JSON-Array oder getrennt
+* `ingredients`: JSON-Array
+* `steps`: JSON-Array
 * `tags`: Kommagetrennt
 * `created_at` / `updated_at`: ISO 8601
 

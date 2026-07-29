@@ -1,6 +1,7 @@
-package com.example.recipe_book.data
+package com.example.recipe_book.data.remote
 
 import android.util.Log
+import com.example.recipe_book.data.model.ProductResponse
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText

@@ -1,6 +1,7 @@
-package com.example.recipe_book.data
+package com.example.recipe_book.data.remote
 
 
+import com.example.recipe_book.data.model.ProductResponse
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation

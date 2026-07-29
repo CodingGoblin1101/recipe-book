@@ -14,8 +14,8 @@ import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.recipe_book.data.ProductResponse
-import com.example.recipe_book.data.ProductService
+import com.example.recipe_book.data.model.ProductResponse
+import com.example.recipe_book.data.remote.ProductService
 import com.example.recipe_book.ui.theme.PurpleGrey80
 
 @Composable

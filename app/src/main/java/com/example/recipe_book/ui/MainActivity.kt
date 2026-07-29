@@ -1,14 +1,12 @@
-package com.example.recipe_book.view
+package com.example.recipe_book.ui
 
-
-import com.example.recipe_book.ui.theme.RecipebookTheme
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.ui.Modifier
 import com.example.recipe_book.ui.screens.MainScreen
-
+import com.example.recipe_book.ui.theme.RecipebookTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,7 +14,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             RecipebookTheme {
-                MainScreen(Modifier)
+                MainScreen(Modifier.Companion)
             }
         }
     }
