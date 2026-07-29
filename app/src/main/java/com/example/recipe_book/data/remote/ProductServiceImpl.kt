@@ -7,9 +7,7 @@ import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import kotlinx.serialization.json.Json
 
-class ProductServiceImpl(
-    private val client: HttpClient
-): ProductService {
+class ProductServiceImpl(private val client: HttpClient) : ProductService {
     private val json = Json {
         ignoreUnknownKeys = true
         isLenient = true

@@ -32,17 +32,18 @@ com.example.recipe_book
 
 ## Google Sheets - Setup (ToDos)
 
-* [ ] Script anpassen mit passenderen Datentypen
+* [ ] change Datatypes in Script
 
 
 ---
 
 ## Repository API (Interface) — ToDo
 
-* [x] genauen Aufbau der Architektur bestimmen + verbessern
-* [ ] Datentypen anpassen an Script
-* [ ] MainScreen verschönern
+* [x] change project structure
+* [ ] change Datatypes
+* [ ] make MainScreen beautiful
 * [ ] RecipeDetails Screen
+* [ ] Unit Tests
 * [ ] ViewModel -> addRecipe
 * [ ] ViewModel -> updateRecipes (even needed?)
 
