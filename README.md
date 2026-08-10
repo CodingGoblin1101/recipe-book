@@ -32,7 +32,7 @@ com.example.recipe_book
 
 ## Google Sheets - Setup (ToDos)
 
-* [ ] change Datatypes in Script
+* [x] change Datatypes in Script
 
 
 ---
@@ -40,7 +40,7 @@ com.example.recipe_book
 ## Repository API (Interface) — ToDo
 
 * [x] change project structure
-* [ ] change Datatypes
+* [x] change Datatypes
 * [ ] make MainScreen beautiful
 * [ ] RecipeDetails Screen
 * [ ] Unit Tests

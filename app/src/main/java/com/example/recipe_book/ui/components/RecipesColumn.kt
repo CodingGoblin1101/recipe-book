@@ -25,6 +25,7 @@ fun RecipesColumn(products: State<ProductResponse?>) {
     ) {
         items(products.value!!.data) { recipe ->
 
+        Text(text = recipe.name)
             Card(
                 modifier = Modifier
                     .padding(horizontal = 20.dp, vertical = 10.dp)
@@ -36,15 +37,15 @@ fun RecipesColumn(products: State<ProductResponse?>) {
                     defaultElevation = 20.dp,
                 )
             ) {
-                Text(text = recipe.name)
                 Column(
                     Modifier.padding(10.dp)
                 ) {
 
-                    Text(text = "Zutaten: ${recipe.ingredients}")
-                    Text(text = "HowTo: ${recipe.steps}")
-                    Text(text = "Alternativ: ${recipe.alternatives}")
-                    Text(text = "Pictures: ${recipe.pictures}")
+                    Text(text = "Zutaten: ${recipe.ingredients.keys}")
+                    Text(text = "${recipe.ingredients.values}")
+                    Text(text = "HowTo: ${recipe.steps.toString()}")
+                    Text(text = "Alternativ: ${recipe.notes}")
+                    Text(text = "Pictures: ${recipe.picture}")
                 }
 
             }

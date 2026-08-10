@@ -9,13 +9,13 @@ import io.ktor.http.ContentType
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
-fun interface ProductService {
+fun interface RecipeService {
 
     suspend fun getProducts(): ProductResponse
 
     companion object {
-        fun create(): ProductService {
-            return ProductServiceImpl(
+        fun create(): RecipeService {
+            return RecipeServiceImpl(
                 client = HttpClient(CIO) {
                     followRedirects = true
                     install(ContentNegotiation) {

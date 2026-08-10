@@ -4,14 +4,14 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ProductResponse(
-    val data: List<Product>
+    val data: List<Recipe>
 )
 
 @Serializable
-data class Product(
-    val name: String ,
-    val ingredients: String ,
-    val steps: String ,
-    val alternatives: String ,
-    val pictures: String = "" //Platzhalter
+data class Recipe(
+    val name: String,
+    val ingredients: Map<String, String>,
+    val steps: List<String>,
+    val notes: String,
+    val picture: String = "" //Platzhalter
 )
