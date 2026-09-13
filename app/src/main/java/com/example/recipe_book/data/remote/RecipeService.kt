@@ -2,6 +2,7 @@ package com.example.recipe_book.data.remote
 
 
 import com.example.recipe_book.data.model.ProductResponse
+import com.example.recipe_book.data.model.Recipe
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -10,7 +11,7 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
 // client
-fun interface RecipeService {
+interface RecipeService {
 
     suspend fun getProducts(): ProductResponse
 
@@ -30,4 +31,5 @@ fun interface RecipeService {
                 })
         }
     }
+    suspend fun postProduct(recipe: Recipe): Boolean
 }

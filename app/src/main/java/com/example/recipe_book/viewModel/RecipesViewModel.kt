@@ -3,6 +3,7 @@ package com.example.recipe_book.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.recipe_book.data.model.ProductResponse
+import com.example.recipe_book.data.model.Recipe
 import com.example.recipe_book.data.remote.RecipeService
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -21,14 +22,35 @@ class RecipesViewModel : ViewModel() {
         fetchRecipes()
     }
 
-    fun fetchRecipes(){
+    fun fetchRecipes() {
         viewModelScope.launch {
             try {
                 val response = service.getProducts()
                 _recipeState.value = response
-            } catch (e: Exception){
+            } catch (e: Exception) {
+                //TODO: Handle error
                 _recipeState.value = ProductResponse(emptyList())
             }
         }
     }
+
+    //TODO: addRecipes
+    fun addRecipes(recipe: Recipe) {
+        viewModelScope.launch {
+            try {
+                // something
+                val request = service.postProduct(recipe)
+                if (request) {
+                    // refreshes the list
+                    fetchRecipes()
+                } else {
+                    //TODO: Handle failure request
+                }
+            } catch (e: Exception) {
+                //TODO: Handle error
+                _recipeState.value = ProductResponse(emptyList())
+            }
+        }
+    }
+
 }

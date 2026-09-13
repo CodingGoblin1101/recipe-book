@@ -45,7 +45,7 @@ com.example.recipe_book
 * [ ] make MainScreen beautiful
 * [ ] RecipeDetails Screen
 * [ ] Unit Tests
-* [ ] ViewModel
+* [x] ViewModel + add recipe
 * [ ] ViewModel -> updateRecipes (even needed?)
 
 ## Andere ToDos
