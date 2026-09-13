@@ -5,26 +5,24 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.recipe_book.data.model.ProductResponse
 import com.example.recipe_book.ui.theme.PurpleGrey80
 
 @Composable
-fun RecipesColumn(products: State<ProductResponse?>) {
+fun RecipesColumn(products: ProductResponse) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
             .padding(top = 30.dp)
     ) {
-        items(products.value!!.data) { recipe ->
-
+        items(products.data.size) { recipeIndex->
+        val recipe = products.data[recipeIndex]
         Text(text = recipe.name)
             Card(
                 modifier = Modifier

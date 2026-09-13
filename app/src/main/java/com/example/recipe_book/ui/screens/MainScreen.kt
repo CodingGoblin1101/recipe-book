@@ -2,32 +2,25 @@ package com.example.recipe_book.ui.screens
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.produceState
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import com.example.recipe_book.data.model.ProductResponse
-import com.example.recipe_book.data.remote.RecipeService
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.recipe_book.ui.components.RecipesColumn
+import com.example.recipe_book.viewModel.RecipesViewModel
 
 @Composable
-fun MainScreen(modifier: Modifier) {
-    val service = remember { RecipeService.create() }
+fun MainScreen(modifier: Modifier,
+               viewModel: RecipesViewModel = viewModel()) {
+    val recipesState by viewModel.recipesState.collectAsStateWithLifecycle()
 
-    val products = produceState<ProductResponse?>(
-        initialValue = null,
-        producer = {
-            value = try {
-                service.getProducts()
-            } catch (e: Exception) {
-                ProductResponse(emptyList())
-            }
+    when (val state = recipesState) {
+        null -> {
+            Text("Loading...", modifier = modifier)
         }
 
-    )
-
-    if (products.value == null) {
-        Text("Loading...")
-    } else {
-        RecipesColumn(products)
+        else -> {
+            RecipesColumn(state)
+        }
     }
 }

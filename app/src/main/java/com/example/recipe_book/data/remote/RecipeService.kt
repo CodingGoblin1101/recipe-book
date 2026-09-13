@@ -9,6 +9,7 @@ import io.ktor.http.ContentType
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
+// client
 fun interface RecipeService {
 
     suspend fun getProducts(): ProductResponse

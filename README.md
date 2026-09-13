@@ -3,6 +3,7 @@
 **Kurzbeschreibung**
 
 Android App zum Erstellen, Auslesen und Bearbeiten von Rezepten, die in einem Sheet auf dem Google drive gespeichert werden.
+Zum gemeinsamen Teilen & Erweitern eines Rezeptbuches ohne einen Server zu benötigen.
 
 ## Projektstruktur 
 
@@ -44,15 +45,16 @@ com.example.recipe_book
 * [ ] make MainScreen beautiful
 * [ ] RecipeDetails Screen
 * [ ] Unit Tests
-* [ ] ViewModel -> addRecipe
+* [ ] ViewModel
 * [ ] ViewModel -> updateRecipes (even needed?)
 
 ## Andere ToDos
 
+* [x] README überarbeiten
 * nachlesen:
     * [ ] ContentNegotiation
     * [ ] howTo gradle
-*[x] README überarbeiten
+    * [ ] LiveData vs StateFlow
 * 
 ---
 
@@ -78,17 +80,21 @@ https://www.youtube.com/watch?v=0bZDPsaB7GY&list
 
 
 ---
-## Probleme/Hinweise + Learnings
+## Hinweise 
 
-* API + HTTP Anfrage + Response
 * HttpRoute enthält die URL zum Google App Script
 * funktioniert auch im Emulator
 * kurzes loading nötig, sonst crasht app
 
+* fixed Probleme:
+  * HTTP response body being consumed twice
+  * no NULL handling/ignoring - fix:
+    * install(ContentNegotiation) {
+      json(Json {
+      explicitNulls = false })
+    * }
+    * 
+## Learnings
 
-* probleme die aufgetreten sind:
-    * HTTP response body being consumed twice
-    * no NULL handling/ignorin - fix:               
-      * install(ContentNegotiation) {
-        json(Json {
-        explicitNulls = false
+* API + HTTP Anfrage + Response
+* Serialization
