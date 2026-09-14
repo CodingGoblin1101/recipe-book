@@ -34,7 +34,7 @@ fun MainScreen(
                             ingredients = mapOf("Tomato" to "2"),
                             steps = listOf("Cook pasta", "Boil water"),
                             notes = "Something",
-                            picture = ""
+                            pictures = ""
                         )
                     )
                 },

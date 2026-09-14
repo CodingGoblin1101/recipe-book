@@ -43,7 +43,7 @@ fun RecipesColumn(products: ProductResponse) {
                     Text(text = "${recipe.ingredients.values}")
                     Text(text = "HowTo: ${recipe.steps.toString()}")
                     Text(text = "Alternativ: ${recipe.notes}")
-                    Text(text = "Pictures: ${recipe.picture}")
+                    Text(text = "Pictures: ${recipe.pictures}")
                 }
 
             }

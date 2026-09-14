@@ -26,7 +26,7 @@ fun AddRecipeScreen(viewModel: RecipesViewModel = viewModel()) {
                 ingredients = mapOf("Tomato" to "2"),
                 steps = listOf("Cook pasta", "Boil water"),
                 notes = "Something",
-            picture = "" //Platzhalter
+                pictures = "" //Platzhalter
             )
         ) }) { }
         TextField(value = "Zutaten:", onValueChange = {})

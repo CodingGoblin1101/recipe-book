@@ -16,5 +16,5 @@ data class Recipe(
     val ingredients: Map<String, String>,
     val steps: List<String>,
     val notes: String,
-    val picture: String = "" //Platzhalter
+    val pictures: String = "" //Platzhalter
 )
