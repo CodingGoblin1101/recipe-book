@@ -5,8 +5,8 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.recipe_book.data.model.Recipe
 import com.example.recipe_book.ui.components.RecipesColumn
@@ -17,7 +17,7 @@ fun MainScreen(
     modifier: Modifier,
     viewModel: RecipesViewModel = viewModel()
 ) {
-    val recipesState by viewModel.recipesState.collectAsStateWithLifecycle()
+    val recipesState by viewModel.recipesState.observeAsState()
 
     when (val state = recipesState) {
         null -> {

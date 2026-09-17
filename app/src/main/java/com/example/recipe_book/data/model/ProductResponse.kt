@@ -12,9 +12,9 @@ data class ProductResponse(
 
 @Serializable
 data class Recipe(
-    val name: String,
-    val ingredients: Map<String, String>,
-    val steps: List<String>,
-    val notes: String,
+    val name: String = "",
+    val ingredients: Map<String, String> = emptyMap(),
+    val steps: List<String> = emptyList(),
+    val notes: String = "",
     val pictures: String = "" //Platzhalter
 )
