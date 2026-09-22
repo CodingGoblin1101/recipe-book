@@ -1,11 +1,11 @@
 # Recipes Google Sheets App
 
-**Kurzbeschreibung**
+**Short Description**
 
-Android App zum Erstellen, Auslesen und Bearbeiten von Rezepten, die in einem Sheet auf dem Google drive gespeichert werden.
-Zum gemeinsamen Teilen & Erweitern eines Rezeptbuches ohne einen Server zu benötigen.
+Android app for creating, reading, and editing recipes that are stored in a Google Sheet on Google Drive.
+Designed for collaboratively sharing and expanding a recipe book without requiring a server.
 
-## Projektstruktur 
+## Project Structure
 
 ```
 com.example.recipe_book
@@ -26,8 +26,8 @@ com.example.recipe_book
 ## High-Level-Architektur
 
 * **Model/Data**: Services, API definitions
-* **View/UI (Jetpack Compose)**: Darstellung, Navigation, lokale Validierung.
-* **ViewModel**: State-Haltung, UI-Logik, Aufruf von Use-Cases/Repository
+* **View/UI (Jetpack Compose)**: UI rendering, navigation, local validation
+* **ViewModel**: State management, UI logic, calling use cases/repository
 
 ---
 
@@ -38,7 +38,7 @@ com.example.recipe_book
 
 ---
 
-## Repository API (Interface) — ToDo
+## ToDo
 
 * [x] change project structure
 * [x] change Datatypes
@@ -46,55 +46,43 @@ com.example.recipe_book
 * [ ] RecipeDetails Screen
 * [ ] Unit Tests
 * [x] ViewModel + add recipe
-* [ ] ViewModel -> updateRecipes (even needed?)
+* [ ] ViewModel -> updateRecipes (is this even needed?)
 
-## Andere ToDos
-
-* [x] README überarbeiten
-* nachlesen:
-    * [ ] ContentNegotiation
-    * [ ] howTo gradle
-    * [ ] LiveData vs StateFlow
-* 
 ---
 
 
-## Google Sheets - empfohlenes Tabellenlayout
+## Google Sheets - Recommended Table Layout
 
 **Sheet "recipes":**
 
 | ID | title | description | ingredients | steps | tags | created_at | updated_at |
 | -- | ----- | ----------- | ----------- | ----- | ---- | ---------- | ---------- |
 
-* `ID`: eindeutige ID (UUID oder inkrementell)
+* `ID`: Unique ID (UUID or incremental)
 * `ingredients`: JSON-Array
 * `steps`: JSON-Array
-* `tags`: Kommagetrennt
+* `tags`: Comma-separated
 * `created_at` / `updated_at`: ISO 8601
 
+--> TODO: decide if I want this kind of layout
 ---
 
-## used Tutorials/Quellen
+## used Tutorials
 
 https://www.youtube.com/watch?v=0bZDPsaB7GY&list
 
 
 ---
-## Hinweise 
+## Nice-to-Know 
 
-* HttpRoute enthält die URL zum Google App Script
-* funktioniert auch im Emulator
-* kurzes loading nötig, sonst crasht app
+* HttpRoute contains only the Google App Script URL
+* works in emulator
+* loading needed, otherwise apps crashes //TODO: Why this?
 
-* fixed Probleme:
+fixed bugs:
   * HTTP response body being consumed twice
   * no NULL handling/ignoring - fix:
-    * install(ContentNegotiation) {
+    install(ContentNegotiation) {
       json(Json {
       explicitNulls = false })
-    * }
-    * 
-## Learnings
-
-* API + HTTP Anfrage + Response
-* Serialization
+    }
