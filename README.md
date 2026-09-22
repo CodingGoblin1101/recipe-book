@@ -23,7 +23,7 @@ com.example.recipe_book
 
 ---
 
-## High-Level-Architektur
+## High-Level-Architecture
 
 * **Model/Data**: Services, API definitions
 * **View/UI (Jetpack Compose)**: UI rendering, navigation, local validation
@@ -42,11 +42,15 @@ com.example.recipe_book
 
 * [x] change project structure
 * [x] change Datatypes
+* [x] Navigation
 * [ ] make MainScreen beautiful
 * [ ] RecipeDetails Screen
+* [ ] make AddRecipeScreen beautiful
 * [ ] Unit Tests
 * [x] ViewModel + add recipe
 * [ ] ViewModel -> updateRecipes (is this even needed?)
+* [ ] recipeID ViewModel + logic
+* [ ] Back Buttons -> BackStack.pop
 
 ---
 

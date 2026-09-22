@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -18,8 +17,6 @@ fun AddRecipeScreen(viewModel: RecipesViewModel = viewModel()) {
     Column(
     Modifier.padding(10.dp)
     ) {
-        //TODO FIRST: test if POST is working
-        // recipe to JSON where?
         Button(onClick = { viewModel.addRecipes(
             Recipe(
                 name = "Pasta",
@@ -28,10 +25,7 @@ fun AddRecipeScreen(viewModel: RecipesViewModel = viewModel()) {
                 notes = "Something",
                 pictures = "" //Platzhalter
             )
-        ) }) { }
-        TextField(value = "Zutaten:", onValueChange = {})
-        TextField(value = "HowTo:", onValueChange = {})
-        TextField(value = "Alternative:", onValueChange = {})
-        Text(text = "Pictures: ")
+        ) }) {         Text("add a new recipe") }
+
     }
 }

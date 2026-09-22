@@ -8,14 +8,16 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.recipe_book.data.model.Recipe
+import androidx.navigation.NavController
+import com.example.recipe_book.data.model.navigateToAddRecipeScreen
 import com.example.recipe_book.ui.components.RecipesColumn
 import com.example.recipe_book.viewModel.RecipesViewModel
 
 @Composable
 fun MainScreen(
-    modifier: Modifier,
-    viewModel: RecipesViewModel = viewModel()
+    viewModel: RecipesViewModel = viewModel(),
+    navController: NavController,
+    modifier: Modifier
 ) {
     val recipesState by viewModel.recipesState.observeAsState()
 
@@ -26,18 +28,11 @@ fun MainScreen(
 
         else -> {
             Button(
-                //TODO: navigation to addRecipeScreen
-                onClick = {
-                    viewModel.addRecipes(
-                        Recipe(
-                            name = "Pasta",
-                            ingredients = mapOf("Tomato" to "2"),
-                            steps = listOf("Cook pasta", "Boil water"),
-                            notes = "Something",
-                            pictures = ""
-                        )
-                    )
-                },
+                onClick = { navigateToAddRecipeScreen(
+                    navController,
+                    //logic to get newest recipeID here?
+                    recipeId = 1
+                ) },
                 shape = ButtonDefaults.filledTonalShape,
             ) { Text("add recipe") }
             RecipesColumn(state)
