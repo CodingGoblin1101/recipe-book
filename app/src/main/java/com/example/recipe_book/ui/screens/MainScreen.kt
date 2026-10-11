@@ -1,41 +1,50 @@
 package com.example.recipe_book.ui.screens
 
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import com.example.recipe_book.data.model.ProductResponse
 import com.example.recipe_book.data.model.navigateToAddRecipeScreen
 import com.example.recipe_book.ui.components.RecipesColumn
+import com.example.recipe_book.ui.components.Topbar
 import com.example.recipe_book.viewModel.RecipesViewModel
 
 @Composable
 fun MainScreen(
-    viewModel: RecipesViewModel = viewModel(),
-    navController: NavController,
-    modifier: Modifier
+    navController: NavHostController,
+    modifier: Modifier = Modifier,
+    viewModel: RecipesViewModel = viewModel()
 ) {
     val recipesState by viewModel.recipesState.observeAsState()
 
-    when (val state = recipesState) {
+    MainScreenContent(
+        recipesState = recipesState,
+        onAddRecipeClick = { navigateToAddRecipeScreen(navController, recipeId = 1) },
+        modifier = modifier
+    )
+}
+
+@Composable
+fun MainScreenContent(
+    recipesState: ProductResponse?,
+    onAddRecipeClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    when (recipesState) {
         null -> {
             Text("Loading...", modifier = modifier)
         }
 
         else -> {
-            Button(
-                onClick = { navigateToAddRecipeScreen(
-                    navController,
-                    //logic to get newest recipeID here?
-                    recipeId = 1
-                ) },
-                shape = ButtonDefaults.filledTonalShape,
-            ) { Text("add recipe") }
-            RecipesColumn(state)
+            Column(modifier = modifier) {
+                Topbar(onAddRecipeClick)
+                RecipesColumn(recipesState)
+            }
         }
     }
 }
