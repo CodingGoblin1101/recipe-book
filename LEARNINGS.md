@@ -11,3 +11,4 @@
 * Serialization
 * companion object
 * LiveData vs StateFlow
+* Topbar vs Statusbar

@@ -11,8 +11,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.recipe_book.data.model.ProductResponse
-import com.example.recipe_book.ui.theme.PurpleGrey80
+import com.example.recipe_book.ui.theme.Sand90
 
 @Composable
 fun RecipesColumn(products: ProductResponse) {
@@ -23,13 +24,12 @@ fun RecipesColumn(products: ProductResponse) {
     ) {
         items(products.data.size) { recipeIndex->
         val recipe = products.data[recipeIndex]
-        Text(text = recipe.name)
             Card(
                 modifier = Modifier
                     .padding(horizontal = 20.dp, vertical = 10.dp)
                     .fillMaxWidth(),
                 colors = CardDefaults.cardColors(
-                    containerColor = PurpleGrey80
+                    containerColor = Sand90
                 ),
                 elevation = CardDefaults.cardElevation(
                     defaultElevation = 20.dp,
@@ -38,6 +38,7 @@ fun RecipesColumn(products: ProductResponse) {
                 Column(
                     Modifier.padding(10.dp)
                 ) {
+                    Text(text = recipe.name, fontSize = 20.sp)
 
                     Text(text = "Zutaten: ${recipe.ingredients.keys}")
                     Text(text = "${recipe.ingredients.values}")

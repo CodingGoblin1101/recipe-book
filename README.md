@@ -44,6 +44,9 @@ com.example.recipe_book
 * [x] change Datatypes
 * [x] Navigation
 * [ ] make MainScreen beautiful
+  * [ ] picture in recipe card
+  * [ ] own button design
+  * [ ] own headline design
 * [ ] RecipeDetails Screen
 * [ ] make AddRecipeScreen beautiful
 * [ ] Unit Tests
