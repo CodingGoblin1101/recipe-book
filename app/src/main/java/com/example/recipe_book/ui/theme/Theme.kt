@@ -30,7 +30,7 @@ private val LightColorScheme = lightColorScheme(
     background = BackgroundLight,
     onBackground = OnBackgroundLight,
 
-    surface = SurfaceLight,
+    surface = OnSurfaceLight,
     onSurface = OnSurfaceLight,
     surfaceVariant = Color(0xFFEDE5EE),
     onSurfaceVariant = Color(0xFF655967),
@@ -55,10 +55,10 @@ private val DarkColorScheme = darkColorScheme(
     tertiaryContainer = Color(0xFF684B40),
     onTertiaryContainer = Color(0xFFFFE8DE),
 
-    background = Color(0xFF1E191F),
+    background = Color(0xFF836C82),
     onBackground = Color(0xFFF3EDF4),
 
-    surface = Color(0xFF27212A),
+    surface = Color(0xFF836C82),
     onSurface = Color(0xFFF3EDF4),
     surfaceVariant = Color(0xFF39313D),
     onSurfaceVariant = Color(0xFFD0C3D2),
@@ -71,7 +71,7 @@ private val DarkColorScheme = darkColorScheme(
 fun RecipebookTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {

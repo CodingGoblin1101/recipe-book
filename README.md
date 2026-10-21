@@ -44,6 +44,12 @@ com.example.recipe_book
 * [x] change Datatypes
 * [x] Navigation
 * [ ] make MainScreen beautiful
+  * [ ] improve Topbar:
+    * [ ] banner should be under status bar
+    * [ ] search icon need a field beside it
+    * [ ] topbar is too thick
+    * [ ] think about title of topbar or make no title at all?
+  * [ ] cards need darker font
   * [ ] picture in recipe card
   * [ ] own button design
   * [ ] own headline design
