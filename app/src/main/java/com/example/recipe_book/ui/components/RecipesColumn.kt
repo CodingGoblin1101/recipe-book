@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.recipe_book.data.model.ProductResponse
+import com.example.recipe_book.ui.theme.OnBackgroundLight
 import com.example.recipe_book.ui.theme.Sand90
 
 @Composable
@@ -29,7 +30,8 @@ fun RecipesColumn(products: ProductResponse) {
                     .padding(horizontal = 20.dp, vertical = 10.dp)
                     .fillMaxWidth(),
                 colors = CardDefaults.cardColors(
-                    containerColor = Sand90
+                    containerColor = Sand90,
+                    contentColor = OnBackgroundLight
                 ),
                 elevation = CardDefaults.cardElevation(
                     defaultElevation = 20.dp,
@@ -46,10 +48,7 @@ fun RecipesColumn(products: ProductResponse) {
                     Text(text = "Alternativ: ${recipe.notes}")
                     Text(text = "Pictures: ${recipe.pictures}")
                 }
-
             }
-
         }
-
     }
 }

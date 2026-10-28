@@ -6,7 +6,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.recipe_book.data.model.ProductResponse
 import com.example.recipe_book.data.model.Recipe
 import com.example.recipe_book.ui.components.ActionButton
-import com.example.recipe_book.ui.components.Topbar
+import com.example.recipe_book.ui.components.TopBar
 import com.example.recipe_book.ui.screens.MainScreenContent
 import com.example.recipe_book.ui.theme.RecipebookTheme
 
@@ -32,9 +32,9 @@ val mockData = ProductResponse(
 
 @Preview(showBackground = true)
 @Composable
-fun TopbarPreview() {
+fun TopBarPreview() {
     RecipebookTheme {
-        Topbar(onHomeClick = {}, onSearchClick = {})
+        TopBar(onHomeClick = {}, onSearchClick = {})
     }
 }
 

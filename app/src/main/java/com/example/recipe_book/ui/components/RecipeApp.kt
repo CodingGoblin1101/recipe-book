@@ -30,7 +30,7 @@ fun RecipeApp() {
 @Composable
 fun RecipeAppContent(viewModel: RecipesViewModel, navController: NavHostController) {
     Scaffold(
-        topBar = { Topbar(
+        topBar = { TopBar(
             onHomeClick = {
                 // TODO: read about that: Navigate to home and clear the backstack to prevent loops
                 navController.navigate(Screen.Main.route) {
